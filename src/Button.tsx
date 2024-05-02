@@ -1,7 +1,7 @@
 type ButtonPropsType = {
   title: string;
   callBack: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 };
 export function Button({ title, callBack, disabled }: ButtonPropsType) {
   return (
