@@ -13,9 +13,9 @@ function App() {
     startValue: 0,
     endValue: 10,
   };
-  //********************************************************************** */
+  //**************************STATES******************************************** */
   const [counterValues, setCounterValues] = useState(data);
-  //************************************************************************* */
+  //****************************SET STATES********************************************* */
   const setStartValue = (value: number) => {
     setCounterValues({ ...counterValues, startValue: value, counter: value });
   };

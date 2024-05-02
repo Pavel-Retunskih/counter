@@ -19,22 +19,24 @@ export function Counter({
   incrementCounter,
   resetCounter,
 }: CounterPropsType) {
+  //************************STATES************************** */
   const [maxValue, setMaxValue] = useState(endValue);
   const [minValue, setMinValue] = useState(startValue);
-  const valueReached = counter >= endValue;
-  console.log(valueReached);
-
+  const counterReached = counter >= endValue;
+  //************************HANDLERS************************ */
   const onClickValueSetHandler = () => {
     setEndValue(maxValue);
     setStartValue(minValue);
   };
+  //************************RETURN****************************/
 
   return (
     <div>
-      {!valueReached && <h1>{counter}</h1>}
+      {!counterReached && <h1>{counter}</h1>}
       <button onClick={incrementCounter}>Increment</button>
       <button onClick={resetCounter}>Reset</button>
       <div>
+        //TODO : Change this to something more generic when we have
         <input
           type="number"
           value={maxValue}
@@ -49,6 +51,7 @@ export function Counter({
             setMinValue(+e.currentTarget.value);
           }}
         />
+        //TODO : Change this to component
         <button onClick={onClickValueSetHandler}>Set</button>
       </div>
     </div>
