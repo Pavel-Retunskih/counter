@@ -34,21 +34,23 @@ export function Counter({
       {!valueReached && <h1>{counter}</h1>}
       <button onClick={incrementCounter}>Increment</button>
       <button onClick={resetCounter}>Reset</button>
-      <input
-        type="number"
-        value={maxValue}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          setMaxValue(+e.currentTarget.value);
-        }}
-      />
-      <input
-        type="number"
-        value={minValue}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          setMinValue(+e.currentTarget.value);
-        }}
-      />
-      <button onClick={onClickSetHeandler}>Set</button>
+      <div>
+        <input
+          type="number"
+          value={maxValue}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setMaxValue(+e.currentTarget.value);
+          }}
+        />
+        <input
+          type="number"
+          value={minValue}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setMinValue(+e.currentTarget.value);
+          }}
+        />
+        <button onClick={onClickSetHeandler}>Set</button>
+      </div>
     </div>
   );
 }
