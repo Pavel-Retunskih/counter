@@ -24,7 +24,7 @@ export function Counter({
   const valueReached = counter >= endValue;
   console.log(valueReached);
 
-  const onClickSetHeandler = () => {
+  const onClickValueSetHandler = () => {
     setEndValue(maxValue);
     setStartValue(minValue);
   };
@@ -49,7 +49,7 @@ export function Counter({
             setMinValue(+e.currentTarget.value);
           }}
         />
-        <button onClick={onClickSetHeandler}>Set</button>
+        <button onClick={onClickValueSetHandler}>Set</button>
       </div>
     </div>
   );
