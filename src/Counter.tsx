@@ -1,5 +1,6 @@
 import { Settings } from "./Settings";
 import s from "./Counter.module.css";
+import { Button } from "./Button";
 type CounterPropsType = {
   counter: number;
   counterReached: boolean;
@@ -16,11 +17,15 @@ export function Counter({
   resetCounter,
 }: CounterPropsType) {
   return (
-    <div>
-      {!counterReached && <h1>{counter}</h1>}
-      <button onClick={incrementCounter}>Increment</button>
-      <button onClick={resetCounter}>Reset</button>
+    <div className={s.container}>
       <Settings setCounterValue={(max, min) => setCounterValue(max, min)} />
+      <div className={s.counter}>
+        {!counterReached && <h1 className={s.title}>{counter}</h1>}
+        <div className={s.controls}>
+          <Button title="Increment" callBack={incrementCounter} />
+          <Button title="Reset" callBack={resetCounter} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+.title {
+  font-size: 68px;
+  text-align: center;
+  border: 3px solid green;
+  padding: 15px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.counter {
+  width: 400px;
+  padding: 15px;
+  border: 3px solid green;
+}
+.controls {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border: 3px solid green;
+}

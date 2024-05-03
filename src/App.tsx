@@ -35,7 +35,7 @@ function App() {
   //*************************************************************************** */
 
   return (
-    <div className="container">
+    <>
       <Counter
         setCounterValue={setCounterValue}
         counterReached={counterReached}
@@ -43,7 +43,7 @@ function App() {
         incrementCounter={incrementCounter}
         resetCounter={resetCounter}
       />
-    </div>
+    </>
   );
 }
 
