@@ -2,13 +2,42 @@ import { ChangeEvent, useState } from "react";
 import s from "./Settings.module.css";
 import { Button } from "./Button";
 type SettingsPropsType = {
+  startValue: number;
+  endValue: number;
   setCounterValue: (maxValue: number, manValue: number) => void;
+  setMessage: (message: string | null) => void;
 };
 
-export function Settings({ setCounterValue }: SettingsPropsType) {
+export function Settings({
+  setCounterValue,
+  setMessage,
+  endValue,
+  startValue,
+}: SettingsPropsType) {
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const onChangeInputMaxValHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(maxValue);
+
+    if (+e.currentTarget.value > 0) {
+      setMaxValue(+e.currentTarget.value);
+      setMessage("Enter values and press 'set'");
+    } else {
+      setError("Incorrect value!");
+      setMessage(error);
+    }
+  };
+  const onChangeInputMinValHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (+e.currentTarget.value > 0) {
+      setMinValue(+e.currentTarget.value);
+      setMessage("Enter values and press 'set'");
+    } else {
+      setError("Incorrect value!");
+      setMessage(error);
+    }
+  };
+
   return (
     <div className={s.settings}>
       <div className={s.inputs}>
@@ -17,9 +46,7 @@ export function Settings({ setCounterValue }: SettingsPropsType) {
           <input
             type="number"
             value={maxValue}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setMaxValue(+e.currentTarget.value);
-            }}
+            onChange={onChangeInputMaxValHandler}
           />
         </div>
         <div className={s.setting}>
@@ -27,17 +54,16 @@ export function Settings({ setCounterValue }: SettingsPropsType) {
           <input
             type="number"
             value={minValue}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setMinValue(+e.currentTarget.value);
-            }}
+            onChange={onChangeInputMinValHandler}
           />
         </div>
       </div>
-
-      <Button
-        title="Set"
-        callBack={() => setCounterValue(maxValue, minValue)}
-      />
+      <div className={s.controls}>
+        <Button
+          title="Set"
+          callBack={() => setCounterValue(maxValue, minValue)}
+        />
+      </div>
     </div>
   );
 }

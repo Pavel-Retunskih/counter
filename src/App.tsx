@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import { Counter } from "./Counter";
-
 function App() {
   type DataType = {
     counter: number;
@@ -12,9 +11,8 @@ function App() {
   const [counterValues, setCounterValues] = useState<DataType>({
     counter: 0,
     startValue: 0,
-    endValue: 1,
+    endValue: 0,
   });
-  console.log(counterValues);
   const counterReached = counterValues.counter >= counterValues.endValue;
 
   //****************************SET STATES********************************************* */
@@ -25,6 +23,9 @@ function App() {
     setCounterValues({ ...counterValues, counter: counterValues.startValue });
   };
   const setCounterValue = (max: number, min: number) => {
+    console.log(max);
+    console.log(min);
+
     setCounterValues({
       ...counterValues,
       startValue: min,
@@ -37,6 +38,8 @@ function App() {
   return (
     <>
       <Counter
+        startValue={counterValues.startValue}
+        endValue={counterValues.endValue}
         setCounterValue={setCounterValue}
         counterReached={counterReached}
         counter={counterValues.counter}
