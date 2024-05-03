@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from "react";
+import s from "./Settings.module.css";
 type SettingsPropsType = {
   setCounterValue: (maxValue: number, manValue: number) => void;
 };

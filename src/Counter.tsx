@@ -1,5 +1,5 @@
 import { Settings } from "./Settings";
-
+import s from "./Counter.module.css";
 type CounterPropsType = {
   counter: number;
   counterReached: boolean;
