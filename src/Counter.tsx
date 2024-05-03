@@ -20,9 +20,13 @@ export function Counter({
     <div className={s.container}>
       <Settings setCounterValue={(max, min) => setCounterValue(max, min)} />
       <div className={s.counter}>
-        {!counterReached && <h1 className={s.title}>{counter}</h1>}
+        <div className={!counterReached ? s.title : s.red}>{counter}</div>
         <div className={s.controls}>
-          <Button title="Increment" callBack={incrementCounter} />
+          <Button
+            title="Increment"
+            callBack={incrementCounter}
+            disabled={counterReached}
+          />
           <Button title="Reset" callBack={resetCounter} />
         </div>
       </div>

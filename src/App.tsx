@@ -12,7 +12,7 @@ function App() {
   const [counterValues, setCounterValues] = useState<DataType>({
     counter: 0,
     startValue: 0,
-    endValue: 0,
+    endValue: 1,
   });
   console.log(counterValues);
   const counterReached = counterValues.counter >= counterValues.endValue;
