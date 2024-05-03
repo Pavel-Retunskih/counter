@@ -1,43 +1,45 @@
 import { useState } from "react";
 import "./App.css";
-
 import { Counter } from "./Counter";
-export type DataType = {
-  counter: number;
-  startValue: number;
-  endValue: number;
-};
+
 function App() {
-  const data: DataType = {
-    counter: 0,
-    startValue: 0,
-    endValue: 10,
+  type DataType = {
+    counter: number;
+    startValue: number;
+    endValue: number;
   };
   //**************************STATES******************************************** */
-  const [counterValues, setCounterValues] = useState(data);
+  const [counterValues, setCounterValues] = useState<DataType>({
+    counter: 0,
+    startValue: 0,
+    endValue: 0,
+  });
+  console.log(counterValues);
+  const counterReached = counterValues.counter >= counterValues.endValue;
+
   //****************************SET STATES********************************************* */
-  const setStartValue = (value: number) => {
-    setCounterValues({ ...counterValues, startValue: value, counter: value });
-  };
-  const setEndValue = (value: number) => {
-    setCounterValues({ ...counterValues, endValue: value });
-  };
   const incrementCounter = () => {
     setCounterValues({ ...counterValues, counter: counterValues.counter + 1 });
   };
   const resetCounter = () => {
     setCounterValues({ ...counterValues, counter: counterValues.startValue });
   };
+  const setCounterValue = (max: number, min: number) => {
+    setCounterValues({
+      ...counterValues,
+      startValue: min,
+      counter: min,
+      endValue: max,
+    });
+  };
   //*************************************************************************** */
 
   return (
     <div className="container">
       <Counter
+        setCounterValue={setCounterValue}
+        counterReached={counterReached}
         counter={counterValues.counter}
-        endValue={counterValues.endValue}
-        startValue={counterValues.startValue}
-        setStartValue={setStartValue}
-        setEndValue={setEndValue}
         incrementCounter={incrementCounter}
         resetCounter={resetCounter}
       />
