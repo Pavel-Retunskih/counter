@@ -11,33 +11,40 @@ type SettingsPropsType = {
 export function Settings({
   setCounterValue,
   setMessage,
-  endValue,
   startValue,
+  endValue,
 }: SettingsPropsType) {
-  const [maxValue, setMaxValue] = useState(0);
-  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(endValue);
+  const [minValue, setMinValue] = useState(startValue);
   const [error, setError] = useState<string | null>(null);
+
+  const isStartValueMoreThanEndValue = minValue >= maxValue;
+  const isStartValueAreCorrect = maxValue < 0;
+  const isEndValueAreCorrect = maxValue < 0;
+
+  if (isStartValueMoreThanEndValue) {
+    setMessage("Start value must be less than max value");
+  }
+  if (isStartValueAreCorrect) {
+    setMessage("Start value must be more than 0");
+  }
+  if (isEndValueAreCorrect) {
+    setMessage("End value must be more than 0");
+  }
+
   const onClickButtonHandler = () => {
     setCounterValue(maxValue, minValue);
     setMessage(null);
   };
+
   const onChangeInputMaxValHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (+e.currentTarget.value > 0) {
-      setMaxValue(+e.currentTarget.value);
-      setMessage("Enter values and press 'set'");
-    } else {
-      setError("Incorrect value!");
-      setMessage(error);
-    }
+    setMaxValue(+e.currentTarget.value);
+    setMessage("Enter the values end press Set button");
   };
+
   const onChangeInputMinValHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (+e.currentTarget.value > 0) {
-      setMinValue(+e.currentTarget.value);
-      setMessage("Enter values and press 'set'");
-    } else {
-      setError("Incorrect value!");
-      setMessage(error);
-    }
+    setMinValue(+e.currentTarget.value);
+    setMessage("Enter the values end press Set button");
   };
 
   return (
@@ -47,16 +54,16 @@ export function Settings({
           <span className={s.text}>Set max value:</span>
           <input
             type="number"
-            value={maxValue}
             onChange={onChangeInputMaxValHandler}
+            value={maxValue}
           />
         </div>
         <div className={s.setting}>
           <span className={s.text}>Set start value:</span>
           <input
             type="number"
-            value={minValue}
             onChange={onChangeInputMinValHandler}
+            value={minValue}
           />
         </div>
       </div>

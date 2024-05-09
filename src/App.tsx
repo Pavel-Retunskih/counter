@@ -11,10 +11,11 @@ function App() {
   const [counterValues, setCounterValues] = useState<DataType>({
     counter: 0,
     startValue: 0,
-    endValue: 0,
+    endValue: 1,
   });
-  const counterReached = counterValues.counter >= counterValues.endValue;
 
+  //****************************Check values********************************************* */
+  const counterReached = counterValues.counter >= counterValues.endValue;
   //****************************SET STATES********************************************* */
   const incrementCounter = () => {
     setCounterValues({ ...counterValues, counter: counterValues.counter + 1 });
@@ -33,6 +34,7 @@ function App() {
       endValue: max,
     });
   };
+
   //*************************************************************************** */
 
   return (

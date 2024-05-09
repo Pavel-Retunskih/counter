@@ -22,25 +22,24 @@ export function Counter({
   resetCounter,
 }: CounterPropsType) {
   const [message, setMessage] = useState<string | null>(null);
-  console.log(message);
 
   return (
     <div className={s.container}>
       <Settings
         setCounterValue={(max, min) => setCounterValue(max, min)}
-        setMessage={setMessage}
         startValue={startValue}
         endValue={endValue}
+        setMessage={setMessage}
       />
       <div className={s.counter}>
         <div className={!counterReached ? s.title : s.red}>
-          {message ? message : counter}
+          {message ? <span>{message}</span> : <span>{counter}</span>}
         </div>
         <div className={s.controls}>
           <Button
             title="Increment"
             callBack={incrementCounter}
-            disabled={counterReached}
+            disabled={counterReached || !!message}
           />
           <Button title="Reset" callBack={resetCounter} />
         </div>
