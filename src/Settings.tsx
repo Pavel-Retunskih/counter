@@ -5,7 +5,7 @@ type SettingsPropsType = {
   startValue: number;
   endValue: number;
   setCounterValue: (maxValue: number, manValue: number) => void;
-  setMessage: (message: string | null) => void;
+  setMessage: (message: string) => void;
 };
 
 export function Settings({
@@ -16,7 +16,6 @@ export function Settings({
 }: SettingsPropsType) {
   const [maxValue, setMaxValue] = useState(endValue);
   const [minValue, setMinValue] = useState(startValue);
-  const [error, setError] = useState<string | null>(null);
 
   const isStartValueMoreThanEndValue = minValue >= maxValue;
   const isStartValueAreCorrect = maxValue < 0;
@@ -34,7 +33,7 @@ export function Settings({
 
   const onClickButtonHandler = () => {
     setCounterValue(maxValue, minValue);
-    setMessage(null);
+    setMessage("");
   };
 
   const onChangeInputMaxValHandler = (e: ChangeEvent<HTMLInputElement>) => {
