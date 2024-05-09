@@ -22,6 +22,8 @@ export function Counter({
   resetCounter,
 }: CounterPropsType) {
   const [message, setMessage] = useState<string | null>(null);
+  console.log(message);
+
   return (
     <div className={s.container}>
       <Settings

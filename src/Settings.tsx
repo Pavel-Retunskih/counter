@@ -17,9 +17,11 @@ export function Settings({
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const onClickButtonHandler = () => {
+    setCounterValue(maxValue, minValue);
+    setMessage(null);
+  };
   const onChangeInputMaxValHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(maxValue);
-
     if (+e.currentTarget.value > 0) {
       setMaxValue(+e.currentTarget.value);
       setMessage("Enter values and press 'set'");
@@ -59,10 +61,7 @@ export function Settings({
         </div>
       </div>
       <div className={s.controls}>
-        <Button
-          title="Set"
-          callBack={() => setCounterValue(maxValue, minValue)}
-        />
+        <Button title="Set" callBack={onClickButtonHandler} />
       </div>
     </div>
   );
