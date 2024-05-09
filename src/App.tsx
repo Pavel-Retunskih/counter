@@ -20,9 +20,11 @@ function App() {
   const incrementCounter = () => {
     setCounterValues({ ...counterValues, counter: counterValues.counter + 1 });
   };
+
   const resetCounter = () => {
     setCounterValues({ ...counterValues, counter: counterValues.startValue });
   };
+
   const setCounterValue = (max: number, min: number) => {
     console.log(max);
     console.log(min);
