@@ -1,8 +1,7 @@
 import { Settings } from "./Settings";
 import s from "./Counter.module.css";
-import { Button } from "./Button";
 import { useState } from "react";
-import { CounterTitle } from "./CounterTitle";
+import { CounterBody } from "./CounterBody";
 type CounterPropsType = {
   startValue: number;
   endValue: number;
@@ -23,6 +22,7 @@ export function Counter({
   resetCounter,
 }: CounterPropsType) {
   const [message, setMessage] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
 
   return (
     <div className={s.container}>
@@ -31,22 +31,16 @@ export function Counter({
         startValue={startValue}
         endValue={endValue}
         setMessage={setMessage}
+        setError={setError}
       />
-      <div>
-        <CounterTitle
-          counterReached={counterReached}
-          counter={counter}
-          message={message}
-        />
-        <div className={s.controls}>
-          <Button
-            title="Increment"
-            callBack={incrementCounter}
-            disabled={counterReached || !!message}
-          />
-          <Button title="Reset" callBack={resetCounter} />
-        </div>
-      </div>
+      <CounterBody
+        counter={counter}
+        counterReached={counterReached}
+        error={error}
+        incrementCounter={incrementCounter}
+        message={message}
+        resetCounter={resetCounter}
+      />
     </div>
   );
 }

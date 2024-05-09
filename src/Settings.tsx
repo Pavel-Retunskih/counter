@@ -6,11 +6,13 @@ type SettingsPropsType = {
   endValue: number;
   setCounterValue: (maxValue: number, manValue: number) => void;
   setMessage: (message: string) => void;
+  setError: (error: boolean) => void;
 };
 
 export function Settings({
   setCounterValue,
   setMessage,
+  setError,
   startValue,
   endValue,
 }: SettingsPropsType) {
@@ -18,17 +20,20 @@ export function Settings({
   const [minValue, setMinValue] = useState(startValue);
 
   const isStartValueMoreThanEndValue = minValue >= maxValue;
-  const isStartValueAreCorrect = maxValue < 0;
+  const isStartValueAreCorrect = minValue < 0;
   const isEndValueAreCorrect = maxValue < 0;
 
   if (isStartValueMoreThanEndValue) {
     setMessage("Start value must be less than max value");
+    setError(true);
   }
   if (isStartValueAreCorrect) {
     setMessage("Start value must be more than 0");
+    setError(true);
   }
   if (isEndValueAreCorrect) {
     setMessage("End value must be more than 0");
+    setError(true);
   }
 
   const onClickButtonHandler = () => {
@@ -39,11 +44,13 @@ export function Settings({
   const onChangeInputMaxValHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setMaxValue(+e.currentTarget.value);
     setMessage("Enter the values end press Set button");
+    setError(false);
   };
 
   const onChangeInputMinValHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setMinValue(+e.currentTarget.value);
     setMessage("Enter the values end press Set button");
+    setError(false);
   };
 
   return (
