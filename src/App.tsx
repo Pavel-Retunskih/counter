@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import { Counter } from "./Counter";
+import { Counter } from "./CounterV1/Counter";
+
 function App() {
   type DataType = {
     counter: number;

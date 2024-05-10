@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import s from "./Settings.module.css";
-import { Button } from "./Button";
+import { Button } from "../Button";
 type SettingsPropsType = {
   startValue: number;
   endValue: number;

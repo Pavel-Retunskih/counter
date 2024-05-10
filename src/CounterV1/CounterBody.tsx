@@ -1,6 +1,7 @@
-import { Button } from "./Button";
+import { Button } from "../Button";
 import s from "./CounterBody.module.css";
 import { CounterTitle } from "./CounterTitle";
+
 type CounterBodyPropsType = {
   counterReached: boolean;
   error: boolean;
