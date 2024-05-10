@@ -3,8 +3,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px;
-  border: 3px solid green;
+  padding: 20px;
+  border: 3px solid rgb(16, 171, 233);
+  border-radius: 15px;
 }
 .text {
   color: aliceblue;
@@ -15,11 +16,19 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  border: 3px solid green;
-  padding: 30px;
+  border: 3px solid rgb(16, 171, 233);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 input {
   width: 40px;
+}
+input.error {
+  width: 40px;
+  background-color: #ec4646da;
+  color: #9c0909fd;
+  border: 2px solid #9c0909fd;
 }
 .setting {
   display: flex;
@@ -28,6 +37,7 @@ input {
 .controls {
   display: flex;
   justify-content: space-around;
-  padding: 10px;
-  border: 3px solid green;
+  padding: 20px;
+  border: 3px solid rgb(16, 171, 233);
+  border-radius: 15px;
 }

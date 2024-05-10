@@ -1,3 +1,5 @@
+import s from "./Button.module.css";
+
 type ButtonPropsType = {
   title: string;
   callBack: () => void;
@@ -5,7 +7,7 @@ type ButtonPropsType = {
 };
 export function Button({ title, callBack, disabled }: ButtonPropsType) {
   return (
-    <button onClick={callBack} disabled={disabled}>
+    <button className={s.button} onClick={callBack} disabled={disabled}>
       {title}
     </button>
   );

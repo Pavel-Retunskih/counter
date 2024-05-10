@@ -5,18 +5,18 @@ type CounterBodyPropsType = {
   counterReached: boolean;
   error: boolean;
   counter: number;
-  message: string | null;
+  message: string;
   incrementCounter: () => void;
   resetCounter: () => void;
 };
 
 export function CounterBody({
   counter,
+  message,
+  error,
   counterReached,
   incrementCounter,
   resetCounter,
-  message,
-  error,
 }: CounterBodyPropsType) {
   return (
     <div className={s.counterBody}>

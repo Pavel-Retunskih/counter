@@ -29,16 +29,17 @@ export function Counter({
       <Settings
         setCounterValue={(max, min) => setCounterValue(max, min)}
         startValue={startValue}
+        error={error}
         endValue={endValue}
         setMessage={setMessage}
         setError={setError}
       />
       <CounterBody
         counter={counter}
-        counterReached={counterReached}
-        error={error}
-        incrementCounter={incrementCounter}
         message={message}
+        error={error}
+        counterReached={counterReached}
+        incrementCounter={incrementCounter}
         resetCounter={resetCounter}
       />
     </div>

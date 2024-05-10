@@ -7,13 +7,17 @@
   font-size: 48px;
 }
 .counter {
-  border: 3px solid green;
+  height: 100%;
+  border: 3px solid rgb(16, 171, 233);
+  border-radius: 15px;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 .message {
   font-size: 20px;
 }
 .error {
   color: red;
+  font-size: 20px;
 }

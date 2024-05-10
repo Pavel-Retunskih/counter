@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import s from "./Settings.module.css";
 import { Button } from "./Button";
 type SettingsPropsType = {
+  error: boolean;
   startValue: number;
   endValue: number;
   setCounterValue: (maxValue: number, manValue: number) => void;
@@ -15,6 +16,7 @@ export function Settings({
   setError,
   startValue,
   endValue,
+  error,
 }: SettingsPropsType) {
   const [maxValue, setMaxValue] = useState(endValue);
   const [minValue, setMinValue] = useState(startValue);
@@ -62,6 +64,7 @@ export function Settings({
             type="number"
             onChange={onChangeInputMaxValHandler}
             value={maxValue}
+            min={-1}
           />
         </div>
         <div className={s.setting}>
@@ -70,11 +73,12 @@ export function Settings({
             type="number"
             onChange={onChangeInputMinValHandler}
             value={minValue}
+            min={-1}
           />
         </div>
       </div>
       <div className={s.controls}>
-        <Button title="Set" callBack={onClickButtonHandler} />
+        <Button title="Set" callBack={onClickButtonHandler} disabled={error} />
       </div>
     </div>
   );
