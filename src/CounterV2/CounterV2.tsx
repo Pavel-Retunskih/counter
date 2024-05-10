@@ -1,7 +1,8 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import s from "./CounterV2.module.css";
 import { Button } from "../Button";
 import { DataType } from "../App";
+import { Settings } from "./Settings";
 
 export function CounterV2() {
   const [counterValues, setCounterValues] = useState<DataType>({
@@ -9,11 +10,26 @@ export function CounterV2() {
     startValue: 0,
     endValue: 1,
   });
+  const [tempSettigns, setTempSettings] = useState<{
+    min: number;
+    max: number;
+  }>({ min: 0, max: 1 });
+
   const [menu, setMenu] = useState(false);
-  const [maxValue, setMaxValue] = useState(counterValues.endValue);
-  const [minValue, setMinValue] = useState(counterValues.startValue);
+  const onSaveSettings = (inp: string, value: number) => {
+    setTempSettings({
+      ...tempSettigns,
+      [inp]: value,
+    });
+  };
+
   const onClickButtonHandler = () => {
-    setCounterValue(maxValue, minValue);
+    setCounterValues({
+      ...counterValues,
+      counter: tempSettigns.min,
+      startValue: tempSettigns.min,
+      endValue: tempSettigns.max,
+    });
     setMenu(!menu);
   };
 
@@ -28,44 +44,17 @@ export function CounterV2() {
     setCounterValues({ ...counterValues, counter: counterValues.startValue });
   };
 
-  const setCounterValue = (max: number, min: number) => {
-    setCounterValues({
-      ...counterValues,
-      startValue: min,
-      counter: min,
-      endValue: max,
-    });
-  };
-
-  const onChangeInputMaxValHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setMaxValue(+e.currentTarget.value);
-  };
-
-  const onChangeInputMinValHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setMinValue(+e.currentTarget.value);
-  };
   return (
     <div className={s.container}>
       <div className={s.display}>
         {menu ? (
-          <div>
-            <div className={s.setting}>
-              <span className={s.text}>Set max value:</span>
-              <input
-                type="number"
-                onChange={onChangeInputMaxValHandler}
-                value={maxValue}
-              />
-            </div>
-            <div className={s.setting}>
-              <span className={s.text}>Set start value:</span>
-              <input
-                type="number"
-                onChange={onChangeInputMinValHandler}
-                value={minValue}
-              />
-            </div>
-          </div>
+          <Settings
+            tempSettigns={tempSettigns}
+            startValue={counterValues.startValue}
+            endValue={counterValues.endValue}
+            onSaveSettings={onSaveSettings}
+            onClickButtonHandler={onClickButtonHandler}
+          />
         ) : (
           <div>
             <span className={!counterReached ? s.title : s.red}>
