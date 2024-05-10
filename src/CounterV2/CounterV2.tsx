@@ -10,29 +10,37 @@ export function CounterV2() {
     startValue: 0,
     endValue: 1,
   });
+  useEffect(() => {
+    const counterValuesFromLocalStorage = localStorage.getItem(
+      "counterValuesForCounterV2"
+    );
+    if (counterValuesFromLocalStorage) {
+      setCounterValues(JSON.parse(counterValuesFromLocalStorage));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem(
+      "counterValuesForCounterV2",
+      JSON.stringify(counterValues)
+    );
+  }, [counterValues]);
+
   const [tempSettigns, setTempSettings] = useState<{
     min: number;
     max: number;
   }>({ min: 0, max: 1 });
-
-  const [menu, setMenu] = useState(false);
-  const onSaveSettings = (inp: string, value: number) => {
-    setTempSettings({
-      ...tempSettigns,
-      [inp]: value,
-    });
-  };
-
-  const onClickButtonHandler = () => {
-    setCounterValues({
-      ...counterValues,
-      counter: tempSettigns.min,
-      startValue: tempSettigns.min,
-      endValue: tempSettigns.max,
-    });
-    setMenu(!menu);
-  };
-
+  const [menu, setMenu] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  //*******************USE EFFECT FOR TOGGLE MENU************************************** */
+  useEffect(() => {
+    const menuToggle = localStorage.getItem("toggleMenuForCounterV2");
+    if (menuToggle) {
+      setMenu(JSON.parse(menuToggle));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("toggleMenuForCounterV2", JSON.stringify(menu));
+  }, [menu]);
   //****************************Check values********************************************* */
   const counterReached = counterValues.counter >= counterValues.endValue;
   //****************************SET STATES********************************************* */
@@ -43,7 +51,25 @@ export function CounterV2() {
   const resetCounter = () => {
     setCounterValues({ ...counterValues, counter: counterValues.startValue });
   };
+  //*******************************HANDLERS************************************************* */
+  const onSaveSettings = (inp: string, value: number) => {
+    setTempSettings({
+      ...tempSettigns,
+      [inp]: value,
+    });
+  };
 
+  const onClickButtonHandler = () => {
+    if (menu) {
+      setCounterValues({
+        ...counterValues,
+        counter: tempSettigns.min,
+        startValue: tempSettigns.min,
+        endValue: tempSettigns.max,
+      });
+      setMenu(!menu);
+    } else setMenu(!menu);
+  };
   return (
     <div className={s.container}>
       <div className={s.display}>
@@ -54,6 +80,7 @@ export function CounterV2() {
             endValue={counterValues.endValue}
             onSaveSettings={onSaveSettings}
             onClickButtonHandler={onClickButtonHandler}
+            setError={setError}
           />
         ) : (
           <div>
@@ -65,9 +92,15 @@ export function CounterV2() {
       </div>
 
       <div className={s.controls}>
-        {!menu && <Button title="Inc" callBack={incrementCounter} />}
+        {!menu && (
+          <Button
+            title="Inc"
+            callBack={incrementCounter}
+            disabled={counterReached}
+          />
+        )}
         {!menu && <Button title="Res" callBack={resetCounter} />}
-        <Button title="Set" callBack={onClickButtonHandler} />
+        <Button title="Set" callBack={onClickButtonHandler} disabled={error} />
       </div>
     </div>
   );

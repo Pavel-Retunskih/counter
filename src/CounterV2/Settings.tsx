@@ -6,14 +6,49 @@ type SettingsPropsType = {
   endValue: number;
   onSaveSettings: (inp: string, value: number) => void;
   onClickButtonHandler: () => void;
+  setError: (error: boolean) => void;
 };
 export function Settings({
   startValue,
   endValue,
   onSaveSettings,
+  setError,
 }: SettingsPropsType) {
   const [minValue, setMinValue] = useState(startValue);
   const [maxValue, setMaxValue] = useState(endValue);
+  useEffect(() => {
+    const maxValueFromLocalStorage = localStorage.getItem(
+      "SettingsMaxValueForCounterV2"
+    );
+    const minValueFromLocalStorage = localStorage.getItem(
+      "SettingsMinValueForCounterV2"
+    );
+    if (maxValueFromLocalStorage) {
+      setMaxValue(JSON.parse(maxValueFromLocalStorage));
+    }
+    if (minValueFromLocalStorage) {
+      setMinValue(JSON.parse(minValueFromLocalStorage));
+    }
+  }, []);
+  useEffect(() => {
+    if (minValue < 0) {
+      setError(true);
+    } else if (maxValue < 0) {
+      setError(true);
+    } else if (minValue >= maxValue) {
+      setError(true);
+    } else {
+      setError(false);
+      localStorage.setItem(
+        "SettingsMaxValueCountrV2",
+        JSON.stringify(maxValue)
+      );
+      localStorage.setItem(
+        "SettingsMinValueCountrV2",
+        JSON.stringify(minValue)
+      );
+    }
+  }, [minValue, maxValue]);
 
   const onChangeInputMaxValHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onSaveSettings("max", +e.currentTarget.value);
