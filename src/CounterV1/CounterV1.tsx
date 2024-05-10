@@ -1,5 +1,5 @@
 import { Settings } from "./Settings";
-import s from "./Counter.module.css";
+import s from "./CounterV1.module.css";
 import { useState } from "react";
 import { CounterBody } from "./CounterBody";
 type CounterPropsType = {

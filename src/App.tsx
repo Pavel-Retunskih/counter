@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import { Counter } from "./CounterV1/Counter";
+import { Counter } from "./CounterV1/CounterV1";
+import { CounterV2 } from "./CounterV2/CounterV2";
 
 function App() {
   type DataType = {
@@ -40,6 +41,15 @@ function App() {
   return (
     <>
       <Counter
+        startValue={counterValues.startValue}
+        endValue={counterValues.endValue}
+        setCounterValue={setCounterValue}
+        counterReached={counterReached}
+        counter={counterValues.counter}
+        incrementCounter={incrementCounter}
+        resetCounter={resetCounter}
+      />
+      <CounterV2
         startValue={counterValues.startValue}
         endValue={counterValues.endValue}
         setCounterValue={setCounterValue}
