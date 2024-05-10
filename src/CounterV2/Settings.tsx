@@ -30,6 +30,7 @@ export function Settings({
         <span className={s.text}>Set max value:</span>
         <input
           type="number"
+          name="maxValue"
           value={maxValue}
           onChange={onChangeInputMaxValHandler}
         />
@@ -38,6 +39,7 @@ export function Settings({
         <span className={s.text}>Set start value:</span>
         <input
           type="number"
+          name="minValue"
           value={minValue}
           onChange={onChangeInputMinValHandler}
         />
