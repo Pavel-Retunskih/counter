@@ -1,7 +1,8 @@
-#root {
+.App {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
   background-color: rgb(105, 99, 99);
 }

@@ -38,7 +38,7 @@ function App() {
   //*************************************************************************** */
 
   return (
-    <>
+    <div className="App">
       <Counter
         startValue={counterValues.startValue}
         endValue={counterValues.endValue}
@@ -49,7 +49,7 @@ function App() {
         resetCounter={resetCounter}
       />
       <CounterV2 />
-    </>
+    </div>
   );
 }
 
