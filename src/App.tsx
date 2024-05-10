@@ -2,13 +2,12 @@ import { useState } from "react";
 import "./App.css";
 import { Counter } from "./CounterV1/CounterV1";
 import { CounterV2 } from "./CounterV2/CounterV2";
-
+export type DataType = {
+  counter: number;
+  startValue: number;
+  endValue: number;
+};
 function App() {
-  type DataType = {
-    counter: number;
-    startValue: number;
-    endValue: number;
-  };
   //**************************STATES******************************************** */
   const [counterValues, setCounterValues] = useState<DataType>({
     counter: 0,
@@ -49,15 +48,7 @@ function App() {
         incrementCounter={incrementCounter}
         resetCounter={resetCounter}
       />
-      <CounterV2
-        startValue={counterValues.startValue}
-        endValue={counterValues.endValue}
-        setCounterValue={setCounterValue}
-        counterReached={counterReached}
-        counter={counterValues.counter}
-        incrementCounter={incrementCounter}
-        resetCounter={resetCounter}
-      />
+      <CounterV2 />
     </>
   );
 }
