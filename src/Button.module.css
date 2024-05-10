@@ -1,4 +1,6 @@
 .button {
+  font-size: 18px;
+  font-weight: bold;
   padding: 15px;
   background-color: rgb(97, 88, 88);
   color: rgb(16, 171, 233);

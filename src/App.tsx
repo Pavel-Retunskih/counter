@@ -26,9 +26,6 @@ function App() {
   };
 
   const setCounterValue = (max: number, min: number) => {
-    console.log(max);
-    console.log(min);
-
     setCounterValues({
       ...counterValues,
       startValue: min,
