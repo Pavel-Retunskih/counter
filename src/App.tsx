@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Counter } from "./CounterV1/CounterV1";
 import { CounterV2 } from "./CounterV2/CounterV2";
@@ -14,7 +14,15 @@ function App() {
     startValue: 0,
     endValue: 1,
   });
-
+  useEffect(() => {
+    const counterValues = localStorage.getItem("counterValues");
+    if (counterValues) {
+      setCounterValues(JSON.parse(counterValues));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("counterValues", JSON.stringify(counterValues));
+  }, [counterValues]);
   //****************************Check values********************************************* */
   const counterReached = counterValues.counter >= counterValues.endValue;
   //****************************SET STATES********************************************* */

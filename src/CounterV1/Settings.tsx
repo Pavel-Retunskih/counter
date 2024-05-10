@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import s from "./Settings.module.css";
 import { Button } from "../Button";
 type SettingsPropsType = {
@@ -22,6 +22,20 @@ export function Settings({
   const isStartValueMoreThanEndValue = minValue >= maxValue;
   const isStartValueAreCorrect = minValue < 0;
   const isEndValueAreCorrect = maxValue < 0;
+  useEffect(() => {
+    const maxValueFromLocalStorage = localStorage.getItem("SettingsMaxValue");
+    const minValueFromLocalStorage = localStorage.getItem("SettingsMinValue");
+    if (maxValueFromLocalStorage) {
+      setMaxValue(+maxValueFromLocalStorage);
+    }
+    if (minValueFromLocalStorage) {
+      setMinValue(+minValueFromLocalStorage);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("SettingsMaxValue", JSON.stringify(maxValue));
+    localStorage.setItem("SettingsMinValue", JSON.stringify(minValue));
+  }, [maxValue, minValue]);
 
   if (isStartValueMoreThanEndValue) {
     setMessage("Start value must be less than max value");
