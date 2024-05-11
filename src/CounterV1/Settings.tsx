@@ -36,19 +36,19 @@ export function Settings({
     localStorage.setItem("SettingsMaxValue", JSON.stringify(maxValue));
     localStorage.setItem("SettingsMinValue", JSON.stringify(minValue));
   }, [maxValue, minValue]);
-
-  if (isStartValueMoreThanEndValue) {
-    setMessage("Start value must be less than max value");
-    setError(true);
-  }
-  if (isStartValueAreCorrect) {
-    setMessage("Start value must be more than 0");
-    setError(true);
-  }
-  if (isEndValueAreCorrect) {
-    setMessage("End value must be more than 0");
-    setError(true);
-  }
+  useEffect(() => {
+    if (isStartValueMoreThanEndValue) {
+      setMessage("Start value must be less than max value");
+      setError(true);
+    }
+    if (isStartValueAreCorrect) {
+      setMessage("Start value must be more than 0");
+      setError(true);
+    } else if (isEndValueAreCorrect) {
+      setMessage("End value must be more than 0");
+      setError(true);
+    }
+  }, [maxValue, minValue]);
 
   const onClickButtonHandler = () => {
     setCounterValue(maxValue, minValue);
