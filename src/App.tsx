@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Counter } from "./CounterV1/CounterV1";
 import { CounterV2 } from "./CounterV2/CounterV2";
+import { Counter } from "./CounterV1/CounterV1";
 export type DataType = {
   counter: number;
   startValue: number;

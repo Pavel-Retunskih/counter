@@ -1,13 +1,15 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./Settings.module.css";
+import { Input } from "./Input";
 type SettingsPropsType = {
-  tempSettigns: { min: number; max: number };
+  tempSettings: { min: number; max: number };
   startValue: number;
   endValue: number;
   onSaveSettings: (inp: string, value: number) => void;
   onClickButtonHandler: () => void;
   setError: (error: boolean) => void;
 };
+
 export function Settings({
   startValue,
   endValue,
@@ -32,6 +34,7 @@ export function Settings({
       setMinValue(JSON.parse(minValueFromLocalStorage));
     }
   }, []);
+
   useEffect(() => {
     localStorage.setItem(
       "SettingsMaxValueForCounterV2",
@@ -52,35 +55,29 @@ export function Settings({
     }
   }, [minValue, maxValue]);
 
-  const onChangeInputMaxValHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setMaxValue(+e.currentTarget.value);
-    onSaveSettings("max", +e.currentTarget.value);
+  const onChangeInputMaxValHandler = (newValue: number) => {
+    setMaxValue(newValue);
+    onSaveSettings("max", newValue);
   };
 
-  const onChangeInputMinValHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(minValue);
-
-    setMinValue(+e.currentTarget.value);
-    onSaveSettings("min", +e.currentTarget.value);
+  const onChangeInputMinValHandler = (newValue: number) => {
+    setMinValue(newValue);
+    onSaveSettings("min", newValue);
   };
   return (
     <div>
       <div className={s.setting}>
         <span className={s.text}>Set max value:</span>
-        <input
-          type="number"
-          name="maxValue"
-          value={maxValue}
-          onChange={onChangeInputMaxValHandler}
+        <Input
+          oldValue={maxValue}
+          onChangeInputValHandler={onChangeInputMaxValHandler}
         />
       </div>
       <div className={s.setting}>
         <span className={s.text}>Set start value:</span>
-        <input
-          type="number"
-          name="minValue"
-          value={minValue}
-          onChange={onChangeInputMinValHandler}
+        <Input
+          oldValue={minValue}
+          onChangeInputValHandler={onChangeInputMinValHandler}
         />
       </div>
     </div>
