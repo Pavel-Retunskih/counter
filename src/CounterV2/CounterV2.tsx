@@ -76,9 +76,6 @@ export function CounterV2() {
   };
 
   const onClickButtonHandler = () => {
-    console.log(counterValues);
-    console.log(tempSettigns);
-
     if (menu) {
       setCounterValues({
         ...counterValues,
