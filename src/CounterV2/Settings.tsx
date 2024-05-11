@@ -5,7 +5,7 @@ type SettingsPropsType = {
   tempSettings: { min: number; max: number };
   startValue: number;
   endValue: number;
-  onSaveSettings: (inp: string, value: number) => void;
+  onSaveSettings: (key: string, value: number) => void;
   onClickButtonHandler: () => void;
   setError: (error: boolean) => void;
 };
@@ -70,6 +70,7 @@ export function Settings({
         <span className={s.text}>Set max value:</span>
         <Input
           oldValue={maxValue}
+          name="maxValue"
           onChangeInputValHandler={onChangeInputMaxValHandler}
         />
       </div>
@@ -77,6 +78,7 @@ export function Settings({
         <span className={s.text}>Set start value:</span>
         <Input
           oldValue={minValue}
+          name="minValue"
           onChangeInputValHandler={onChangeInputMinValHandler}
         />
       </div>

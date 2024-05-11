@@ -65,10 +65,10 @@ export function CounterV2() {
     setCounterValues({ ...counterValues, counter: counterValues.startValue });
   };
   //*******************************HANDLERS************************************************* */
-  const onSaveSettings = (inp: string, value: number) => {
+  const onSaveSettings = (key: string, value: number) => {
     setTempSettings({
       ...tempSettings,
-      [inp]: value,
+      [key]: value,
     });
   };
 
