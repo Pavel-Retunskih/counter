@@ -29,6 +29,20 @@ export function CounterV2() {
     min: number;
     max: number;
   }>({ min: 0, max: 1 });
+  useEffect(() => {
+    const tempSettingsFromLocalStorage = localStorage.getItem(
+      "tempSettignsForCounterV2"
+    );
+    if (tempSettingsFromLocalStorage) {
+      setTempSettings(JSON.parse(tempSettingsFromLocalStorage));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem(
+      "tempSettignsForCounterV2",
+      JSON.stringify(tempSettigns)
+    );
+  }, [tempSettigns]);
   const [menu, setMenu] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   //*******************USE EFFECT FOR TOGGLE MENU************************************** */
@@ -53,6 +67,8 @@ export function CounterV2() {
   };
   //*******************************HANDLERS************************************************* */
   const onSaveSettings = (inp: string, value: number) => {
+    console.log(tempSettigns);
+
     setTempSettings({
       ...tempSettigns,
       [inp]: value,
@@ -60,6 +76,9 @@ export function CounterV2() {
   };
 
   const onClickButtonHandler = () => {
+    console.log(counterValues);
+    console.log(tempSettigns);
+
     if (menu) {
       setCounterValues({
         ...counterValues,
