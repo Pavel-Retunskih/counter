@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { ReactElement, ReactEventHandler, useEffect, useState } from "react";
 import "./App.css";
 import { CounterV2 } from "./CounterV2/CounterV2";
-import { Counter } from "./CounterV1/CounterV1";
+import { CounterV1 } from "./CounterV1/CounterV1";
 export type DataType = {
   counter: number;
   startValue: number;
@@ -42,12 +42,14 @@ function App() {
       endValue: max,
     });
   };
+  useEffect(() => {
+    console.log(window.innerWidth);
+  }, []);
 
   //*************************************************************************** */
-
   return (
     <div className="App">
-      <Counter
+      <CounterV1
         startValue={counterValues.startValue}
         endValue={counterValues.endValue}
         setCounterValue={setCounterValue}

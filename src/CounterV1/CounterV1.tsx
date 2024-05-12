@@ -12,7 +12,7 @@ type CounterPropsType = {
   resetCounter: () => void;
 };
 
-export function Counter({
+export function CounterV1({
   startValue,
   endValue,
   counter,
